@@ -40,7 +40,7 @@ const Projects = () => {
     return (
         // Ajout de overflow-hidden sur la section pour éviter que les cartes ne créent
         // une barre de défilement horizontale pendant leur animation depuis les côtés.
-        <section className="relative md:sticky md:top-0 py-20 overflow-hidden bg-[#081221]" id="projects">
+        <section className="relative py-20 overflow-hidden bg-[#081221]" id="projects">
             <div className="max-w-6xl mx-auto px-6">
 
             {/* Titre de section (Lui aussi peut venir du côté !) */}

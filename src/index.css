@@ -2,16 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* On ajoute juste ça pour être sûr d'avoir un fond sombre partout */
 body {
     background-color: #0a192f;
     color: white;
-}
-
-html {
+    /* Pour un scroll plus fluide si tu utilises des liens d'ancrage */
     scroll-behavior: smooth;
 }
 
+/* AJOUT INDISPENSABLE POUR TON CADRE CONTACT */
 svg {
     display: block;
     vertical-align: middle;

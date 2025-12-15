@@ -6,54 +6,66 @@ const Contact = () => {
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        // On commence l'animation un peu avant que la section n'arrive
-        // et on la finit quand le centre de la section est au centre de l'écran
-        offset: ["start 85%", "center center"]
+        offset: ["start 60%", "end center"]
     });
 
-    // L'animation va de 0 à 1
-    const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+    // --- SÉQUENCAGE DE L'ANIMATION ---
+    // 1. Haut (du centre vers les coins) : de 0% à 30% du scroll
+    const widthTop = useTransform(scrollYProgress, [0, 0.3], ["0%", "50%"]);
+
+    // 2. Côtés (de haut en bas) : de 30% à 80% du scroll
+    const heightSide = useTransform(scrollYProgress, [0.3, 0.8], ["0%", "100%"]);
+
+    // 3. Bas (des coins vers le centre) : de 80% à 100% du scroll
+    const widthBottom = useTransform(scrollYProgress, [0.8, 1], ["0%", "50%"]);
 
     return (
         <section
             ref={containerRef}
             id="contact"
-            // min-h-screen : Prend toute la hauteur
-            // overflow-hidden : Empêche le scroll horizontal si le SVG dépasse un peu
             className="relative min-h-screen flex flex-col justify-center items-center py-20 bg-[#0a192f] overflow-hidden"
         >
-            {/* --- L'ANIMATION BORDER SPLIT --- */}
+            {/* --- CADRE ANIMÉ (DIVS) --- */}
             <div className="absolute inset-0 w-full h-full pointer-events-none">
-                <svg
-                    className="w-full h-full overflow-visible"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="none"
-                >
-                    {/* Chemin GAUCHE : Haut Centre (50,0) -> Coin Haut Gauche (0,0) -> Coin Bas Gauche (0,100) -> Bas Centre (50,100) */}
-                    <motion.path
-                        d="M 50 0 L 0 0 L 0 100 L 50 100"
-                        fill="none"
-                        stroke="#64ffda"
-                        strokeWidth="4"
-                        strokeLinecap="square"
-                        vectorEffect="non-scaling-stroke" // Garde l'épaisseur du trait constante (4px) même si le SVG est étiré
-                        style={{ pathLength }}
-                    />
 
-                    {/* Chemin DROITE : Haut Centre (50,0) -> Coin Haut Droit (100,0) -> Coin Bas Droit (100,100) -> Bas Centre (50,100) */}
-                    <motion.path
-                        d="M 50 0 L 100 0 L 100 100 L 50 100"
-                        fill="none"
-                        stroke="#64ffda"
-                        strokeWidth="4"
-                        strokeLinecap="square"
-                        vectorEffect="non-scaling-stroke"
-                        style={{ pathLength }}
-                    />
-                </svg>
+                {/* HAUT GAUCHE (Part du centre, va à gauche) */}
+                <motion.div
+                    style={{ width: widthTop }}
+                    className="absolute top-0 right-1/2 h-[4px] bg-[#64ffda] origin-right"
+                />
+
+                {/* HAUT DROITE (Part du centre, va à droite) */}
+                <motion.div
+                    style={{ width: widthTop }}
+                    className="absolute top-0 left-1/2 h-[4px] bg-[#64ffda] origin-left"
+                />
+
+                {/* CÔTÉ GAUCHE (Descend) */}
+                <motion.div
+                    style={{ height: heightSide }}
+                    className="absolute top-0 left-0 w-[4px] bg-[#64ffda] origin-top"
+                />
+
+                {/* CÔTÉ DROIT (Descend) */}
+                <motion.div
+                    style={{ height: heightSide }}
+                    className="absolute top-0 right-0 w-[4px] bg-[#64ffda] origin-top"
+                />
+
+                {/* BAS GAUCHE (Revient vers le centre) */}
+                <motion.div
+                    style={{ width: widthBottom }}
+                    className="absolute bottom-0 left-0 h-[4px] bg-[#64ffda] origin-left"
+                />
+
+                {/* BAS DROITE (Revient vers le centre) */}
+                <motion.div
+                    style={{ width: widthBottom }}
+                    className="absolute bottom-0 right-0 h-[4px] bg-[#64ffda] origin-right"
+                />
             </div>
 
-            {/* Contenu de la section (Reste inchangé) */}
+            {/* CONTENU */}
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -83,7 +95,7 @@ const Contact = () => {
                     className="text-slate-400 text-lg max-w-xl mx-auto mb-12 leading-relaxed"
                 >
                     Je suis actuellement à la recherche de nouvelles opportunités.
-                    Mon inbox est toujours ouverte, que ce soit pour une mission ou juste pour dire bonjour !
+                    Mon inbox est toujours ouverte !
                 </motion.p>
 
                 <motion.a
