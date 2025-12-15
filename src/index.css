@@ -7,3 +7,12 @@ body {
     background-color: #0a192f;
     color: white;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+svg {
+    display: block;
+    vertical-align: middle;
+}
