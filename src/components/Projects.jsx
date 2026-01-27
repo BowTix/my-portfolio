@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
+import arthecaImg from '../assets/artheca.png';
+import yinshImg from '../assets/yinsh.png';
+import movieBoxImg from '../assets/movie-box.png';
+import tactiQuatreImg from '../assets/TactiQuatre.png';
+import dbsImg from '../assets/dbs.png';
+import supemonImg from '../assets/supemon.png';
 
-// --- TES DONNÉES PROJETS ---
 const projects = [
     {
         title: "Artheca",
@@ -8,7 +13,7 @@ const projects = [
         tech: ["React", "HTML/CSS"],
         githubLink: "https://github.com/BowTix/Artheca",
         demoLink: "https://artheca.vercel.app/",
-        image: "\\src\\assets\\artheca.png"
+        image: arthecaImg
     },
     {
         title: "Yinsh",
@@ -16,7 +21,7 @@ const projects = [
         tech: ["Python"],
         githubLink: "https://github.com/BowTix/Yinsh",
         demoLink: "#",
-        image: "\\src\\assets\\yinsh.png"
+        image: yinshImg
     },
     {
         title: "Movie Box",
@@ -24,7 +29,7 @@ const projects = [
         tech: ["JavaScript", "HTML/CSS"],
         githubLink: "https://github.com/BowTix/Movie-Box",
         demoLink: "#",
-        image: "\\src\\assets\\movie-box.png"
+        image: movieBoxImg
     },
     {
         title: "Tacti'Quatre",
@@ -32,7 +37,7 @@ const projects = [
         tech: ["Python"],
         githubLink: "https://github.com/BowTix/Tacti-Quatre",
         demoLink: "#",
-        image: "\\src\\assets\\TactiQuatre.png"
+        image: tactiQuatreImg
     },
     {
         title: "Drive By Silver",
@@ -40,7 +45,7 @@ const projects = [
         tech: ["HtML/CSS"],
         githubLink: "https://github.com/BowTix/Drive-By-Silver",
         demoLink: "#",
-        image: "\\src\\assets\\dbs.png"
+        image: dbsImg
     },
     {
         title: "Supemon",
@@ -48,20 +53,17 @@ const projects = [
         tech: ["C"],
         githubLink: "https://github.com/BowTix/Supemon",
         demoLink: "#",
-        image: "\\src\\assets\\supemon.png"
+        image: supemonImg
     }
 ];
 
 const Projects = () => {
     return (
-        // Ajout de overflow-hidden sur la section pour éviter que les cartes ne créent
-        // une barre de défilement horizontale pendant leur animation depuis les côtés.
         <section className="relative py-20 overflow-hidden bg-navy-dark" id="projets">
             <div className="max-w-6xl mx-auto px-6">
 
-            {/* Titre de section (Lui aussi peut venir du côté !) */}
             <motion.div
-                initial={{ opacity: 0, x: -50 }} // Vient de la gauche
+                initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
@@ -74,28 +76,20 @@ const Projects = () => {
                 <div className="h-[1px] bg-slate-700 w-1/3 ml-6"></div>
             </motion.div>
 
-            {/* Grille des projets */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project, index) => {
-                    // C'est ICI que la magie opère :
-                    // Si l'index est pair (0, 2...), on part de -100px (gauche).
-                    // Sinon, on part de 100px (droite).
                     const startX = index % 2 === 0 ? -200 : 200;
 
                     return (
                         <motion.div
                             key={index}
-                            // État initial : invisible et décalé sur le côté
                             initial={{ opacity: 0, x: startX }}
-                            // État final (quand visible) : visible et centré (x: 0)
                             whileInView={{ opacity: 1, x: 0 }}
-                            // La transition est un peu plus longue pour un effet latéral fluide
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            viewport={{ once: true, amount: 0.3 }} // amount: déclenche quand 30% de la carte est visible
+                            viewport={{ once: true, amount: 0.3 }}
                             whileHover={{ y: -10 }}
                             className="bg-navy-light rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow border border-transparent hover:border-green/30 group"
                         >
-                            {/* Image du projet */}
                             <div className="relative h-48 overflow-hidden">
                                 <img
                                     src={project.image}
@@ -105,7 +99,6 @@ const Projects = () => {
                                 <div className="absolute inset-0 group-hover:bg-transparent transition-colors duration-300"></div>
                             </div>
 
-                            {/* Contenu de la carte */}
                             <div className="p-6">
                                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green transition-colors">
                                     {project.title}
@@ -114,7 +107,6 @@ const Projects = () => {
                                     {project.description}
                                 </p>
 
-                                {/* Tags Techno */}
                                 <div className="flex flex-wrap gap-2 mb-6">
                                     {project.tech.map((t, i) => (
                                         <span key={i} className="text-xs font-mono text-green">
@@ -122,8 +114,6 @@ const Projects = () => {
                           </span>
                                     ))}
                                 </div>
-
-                                {/* Liens */}
                                 <div className="flex gap-4">
                                     <a href={project.githubLink} className="text-slate-300 hover:text-green transition-colors" title="Code Source">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
