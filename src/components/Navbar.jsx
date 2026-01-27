@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import cv from "../assets/cv_mathis_maureau.pdf"
 
 const Navbar = () => {
     const { scrollY } = useScroll();
     const [hidden, setHidden] = useState(false);
 
-    // Ce hook magique de Framer Motion détecte les changements de scroll
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious();
 
-        // Si on scrolle vers le bas ET qu'on a dépassé 150px
         if (latest > previous && latest > 150) {
             setHidden(true);
         } else {
@@ -19,14 +18,13 @@ const Navbar = () => {
 
     return (
         <motion.nav
-            // L'animation de masquage
             variants={{
                 visible: { y: 0 },
                 hidden: { y: "-100%" },
             }}
             animate={hidden ? "hidden" : "visible"}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="fixed w-full top-0 z-50 bg-[#0a192f]/90 backdrop-blur-sm border-b border-white/10 px-6 py-4"
+            className="fixed w-full top-0 z-50 bg-navy/90 backdrop-blur-sm border-b border-white/10 px-6 py-4"
         >
             <div className="max-w-6xl mx-auto flex justify-between items-center">
 
@@ -34,9 +32,9 @@ const Navbar = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-[#64ffda] font-mono text-xl font-bold cursor-pointer"
+                    className="text-green font-mono text-xl font-bold cursor-pointer"
                 >
-                    &lt;TonNom /&gt;
+                    &lt;Mathis Maureau/&gt;
                 </motion.div>
 
                 {/* Liens Desktop */}
@@ -45,17 +43,17 @@ const Navbar = () => {
                         <a
                             key={index}
                             href={`#${item.toLowerCase().replace(' ', '-')}`}
-                            className="text-slate-300 hover:text-[#64ffda] text-sm font-mono transition-colors"
+                            className="text-slate-300 hover:text-green text-sm font-mono transition-colors"
                         >
-                            <span className="text-[#64ffda] mr-1">0{index + 1}.</span>
+                            <span className="text-green mr-1">0{index + 1}.</span>
                             {item}
                         </a>
                     ))}
 
                     {/* Bouton CV */}
-                    <button className="px-4 py-2 border border-[#64ffda] text-[#64ffda] rounded hover:bg-[#64ffda]/10 text-sm font-mono transition-all">
+                    <a className="px-4 py-2 border border-green text-green rounded hover:bg-green/10 text-sm font-mono transition-all" href={cv} download="cv_mathis_maureau.pdf">
                         CV
-                    </button>
+                    </a>
                 </div>
             </div>
         </motion.nav>

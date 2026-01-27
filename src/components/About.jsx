@@ -1,6 +1,6 @@
-// javascript
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import profil from '../assets/profil.jpg';
 
 const About = () => {
     const containerRef = useRef(null);
@@ -32,19 +32,16 @@ const About = () => {
             const x = clientX - rect.left;
             const y = clientY - rect.top;
 
-            // normalisé -1 .. 1 (peut dépasser si la souris est loin)
             const px = (x - rect.width / 2) / (rect.width / 2);
             const py = (y - rect.height / 2) / (rect.height / 2);
 
-            // réduction si la souris est en dehors (évite les valeurs gigantesques)
             const distance = Math.hypot(px, py);
             const scaleOutside = distance > 1 ? 1 / distance : 1;
 
-            // clamp dans [-1, 1] puis applique la réduction
             const pxSafe = Math.max(-1, Math.min(1, px)) * scaleOutside;
             const pySafe = Math.max(-1, Math.min(1, py)) * scaleOutside;
 
-            const maxDeg = 6; // réduit pour moins d'exagération
+            const maxDeg = 6;
             rotY.set(pxSafe * maxDeg);
             rotX.set(-pySafe * maxDeg);
         };
@@ -81,16 +78,19 @@ const About = () => {
     };
 
     const skills = [
-        "JavaScript (ES6+)", "React.js", "Node.js",
-        "TypeScript", "Tailwind CSS", "PostgreSQL",
+        "JavaScript / TypeScript", "ReactJS / NodeJS", "Php / Symphony",
+        "Python", "C / C++ / C#", "MySQL / MongoDB",
         "Docker", "Git / GitHub"
     ];
 
     return (
+        <>
+        {}
+        <div id="à-propos"/>
+
         <section
             ref={containerRef}
-            id="à-propos"
-            className="relative min-h-screen md:sticky md:top-0 py-32 overflow-hidden bg-[#0a192f]"
+            className="relative min-h-screen md:sticky md:top-0 py-32 overflow-hidden bg-navy flex items-center"
         >
             <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
@@ -102,14 +102,14 @@ const About = () => {
                     viewport={{ once: true, amount: 0.3 }}
                 >
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }} // Vient de la gauche
+                        initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
                         className="flex items-center mb-16"
                     >
                         <h2 className="text-3xl md:text-4xl font-bold text-white">
-                            <span className="text-[#64ffda] font-mono mr-2">01.</span>
+                            <span className="text-green font-mono mr-2">01.</span>
                             A propos
                         </h2>
                         <div className="h-[1px] bg-slate-700 w-1/3 ml-6"></div>
@@ -117,13 +117,13 @@ const About = () => {
 
                     <motion.div variants={itemVariants} className="text-slate-400 text-lg leading-relaxed space-y-4">
                         <p>
-                            Hello ! Je m'appelle <span className="text-[#64ffda]">Mathis</span> et j'aime créer des choses qui vivent sur internet. Mon intérêt pour le développement web a commencé en 2021 quand j'ai développé mon premier site dans le cadre d'un petit projet étudiant.
+                            Salut ! Moi c'est <span className="text-green">Mathis</span>. Tout a commencé en 2021 avec un simple projet étudiant, et depuis, le web est devenu mon terrain de jeu favori. J'adore décortiquer le fonctionnement des choses pour créer des expériences numériques fluides et performantes.
                         </p>
                         <p>
-                            Aujourd'hui, j'ai le privilège de développer des sites et applications pour <span className="text-[#64ffda]">des clients variés</span>, allant de la start-up au grand groupe.
+                            Mon profil ne s'arrête pas au code : je suis un véritable passionné d'informatique, aussi à l'aise avec le <span className="text-green">hardware</span> que le <span className="text-green">software</span>. Je suis constamment en veille technologique, cherchant toujours à optimiser mes compétences.
                         </p>
                         <p>
-                            Je suis obsédé par la performance et l'architecture propre. Voici les technos avec lesquelles j'ai pu travailler :
+                            Quand je ne suis pas devant mon IDE, je vis au rythme des moteurs. Fan inconditionnel de <span className="text-green">sports mécaniques</span> (F1, MotoGP, WEC...) je retrouve dans le développement la même exigence de précision et de performance que dans les paddocks.
                         </p>
                     </motion.div>
 
@@ -132,8 +132,8 @@ const About = () => {
                         className="grid grid-cols-2 gap-2 mt-8 font-mono text-sm text-slate-400"
                     >
                         {skills.map((skill, i) => (
-                            <li key={i} className="flex items-center hover:text-[#64ffda] transition-colors cursor-default">
-                                <span className="text-[#64ffda] mr-2">▹</span> {skill}
+                            <li key={i} className="flex items-center hover:text-green transition-colors cursor-default">
+                                <span className="text-green mr-2">▹</span> {skill}
                             </li>
                         ))}
                     </motion.ul>
@@ -145,7 +145,7 @@ const About = () => {
                 >
 
                     <motion.div
-                        className="absolute top-7 left-5 w-full h-full border-2 border-[#64ffda] rounded-lg z-0 transition-transform duration-500 pointer-events-none group-hover:-translate-x-2 group-hover:-translate-y-2"
+                        className="absolute top-7 left-5 w-full h-full border-2 border-green rounded-lg z-0 transition-transform duration-500 pointer-events-none group-hover:-translate-x-2 group-hover:-translate-y-2"
                     ></motion.div>
 
                     <motion.div
@@ -157,10 +157,10 @@ const About = () => {
                             transformStyle: "preserve-3d",
                             cursor: "pointer"
                         }}
-                        className="relative z-10 rounded-lg overflow-hidden shadow-2xl bg-[#0a192f]"
+                        className="relative z-10 rounded-lg overflow-hidden shadow-2xl bg-navy"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                            src={profil}
                             alt="Portrait"
                             className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out"
                         />
@@ -169,15 +169,16 @@ const About = () => {
                     <motion.div
                         animate={{ y: [0, -10, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute -bottom-14 -right-12 bg-[#112240] p-4 rounded-lg shadow-xl border border-[#64ffda] z-20 hidden md:block"
+                        className="absolute -bottom-14 -right-12 bg-navy-light p-4 rounded-lg shadow-xl border border-green z-20 hidden md:block"
                     >
-                        <span className="text-[#64ffda] font-mono text-xs">Expérience</span>
-                        <div className="text-white font-bold text-xl">5+ Ans</div>
+                        <span className="text-green font-mono text-xs">Expérience</span>
+                        <div className="text-white font-bold text-xl">3+ Ans</div>
                     </motion.div>
 
                 </div>
             </div>
         </section>
+        </>
     );
 };
 

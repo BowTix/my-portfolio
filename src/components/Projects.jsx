@@ -3,36 +3,52 @@ import { motion } from "framer-motion";
 // --- TES DONNÉES PROJETS ---
 const projects = [
     {
-        title: "E-Commerce Dashboard",
-        description: "Une application complète de gestion de stocks avec graphiques en temps réel et authentification sécurisée.",
-        tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-        githubLink: "#",
-        demoLink: "#",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+        title: "Artheca",
+        description: "Site vitrine pour une galerie d'art, avec gestion des œuvres et des artistes.",
+        tech: ["React", "HTML/CSS"],
+        githubLink: "https://github.com/BowTix/Artheca",
+        demoLink: "https://artheca.vercel.app/",
+        image: "\\src\\assets\\artheca.png"
     },
     {
-        title: "Chat App WebSocket",
-        description: "Messagerie instantanée avec support des salons privés et notifications push.",
-        tech: ["Socket.io", "Express", "Redis", "Docker"],
-        githubLink: "#",
+        title: "Yinsh",
+        description: "Jeu de société version numérique tiré du jeu de plateau Yinsh.",
+        tech: ["Python"],
+        githubLink: "https://github.com/BowTix/Yinsh",
         demoLink: "#",
-        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop"
+        image: "\\src\\assets\\yinsh.png"
     },
     {
-        title: "Portfolio v1",
-        description: "Mon ancien portfolio réalisé en HTML/CSS pur. Une bonne base pour comprendre le responsive.",
-        tech: ["HTML5", "SASS", "JavaScript"],
-        githubLink: "#",
+        title: "Movie Box",
+        description: "Site permettant de rechercher et d'afficher des informations sur les films.",
+        tech: ["JavaScript", "HTML/CSS"],
+        githubLink: "https://github.com/BowTix/Movie-Box",
         demoLink: "#",
-        image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop"
+        image: "\\src\\assets\\movie-box.png"
     },
     {
-        title: "Projet 4 (Test)",
-        description: "Juste pour voir l'effet sur plusieurs lignes.",
-        tech: ["Vue.js", "Firebase"],
-        githubLink: "#",
+        title: "Tacti'Quatre",
+        description: "Jeu de stratégie mélangeant morpion, puissance 4 et échecs.",
+        tech: ["Python"],
+        githubLink: "https://github.com/BowTix/Tacti-Quatre",
         demoLink: "#",
-        image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop"
+        image: "\\src\\assets\\TactiQuatre.png"
+    },
+    {
+        title: "Drive By Silver",
+        description: "Site de vente fictive de produits dérivés autour de l'écurie Mercedes.",
+        tech: ["HtML/CSS"],
+        githubLink: "https://github.com/BowTix/Drive-By-Silver",
+        demoLink: "#",
+        image: "\\src\\assets\\dbs.png"
+    },
+    {
+        title: "Supemon",
+        description: "Jeu en mode console inspiré des jeux Pokémon.",
+        tech: ["C"],
+        githubLink: "https://github.com/BowTix/Supemon",
+        demoLink: "#",
+        image: "\\src\\assets\\supemon.png"
     }
 ];
 
@@ -40,7 +56,7 @@ const Projects = () => {
     return (
         // Ajout de overflow-hidden sur la section pour éviter que les cartes ne créent
         // une barre de défilement horizontale pendant leur animation depuis les côtés.
-        <section className="relative py-20 overflow-hidden bg-[#081221]" id="projects">
+        <section className="relative py-20 overflow-hidden bg-navy-dark" id="projets">
             <div className="max-w-6xl mx-auto px-6">
 
             {/* Titre de section (Lui aussi peut venir du côté !) */}
@@ -52,7 +68,7 @@ const Projects = () => {
                 className="flex items-center mb-16"
             >
                 <h2 className="text-3xl md:text-4xl font-bold text-white">
-                    <span className="text-[#64ffda] font-mono mr-2">02.</span>
+                    <span className="text-green font-mono mr-2">02.</span>
                     Quelques Projets
                 </h2>
                 <div className="h-[1px] bg-slate-700 w-1/3 ml-6"></div>
@@ -64,7 +80,7 @@ const Projects = () => {
                     // C'est ICI que la magie opère :
                     // Si l'index est pair (0, 2...), on part de -100px (gauche).
                     // Sinon, on part de 100px (droite).
-                    const startX = index % 2 === 0 ? -100 : 100;
+                    const startX = index % 2 === 0 ? -200 : 200;
 
                     return (
                         <motion.div
@@ -77,7 +93,7 @@ const Projects = () => {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             viewport={{ once: true, amount: 0.3 }} // amount: déclenche quand 30% de la carte est visible
                             whileHover={{ y: -10 }}
-                            className="bg-[#112240] rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow border border-transparent hover:border-[#64ffda]/30 group"
+                            className="bg-navy-light rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow border border-transparent hover:border-green/30 group"
                         >
                             {/* Image du projet */}
                             <div className="relative h-48 overflow-hidden">
@@ -86,12 +102,12 @@ const Projects = () => {
                                     alt={project.title}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-[#64ffda]/20 group-hover:bg-transparent transition-colors duration-300"></div>
+                                <div className="absolute inset-0 group-hover:bg-transparent transition-colors duration-300"></div>
                             </div>
 
                             {/* Contenu de la carte */}
                             <div className="p-6">
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#64ffda] transition-colors">
+                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green transition-colors">
                                     {project.title}
                                 </h3>
                                 <p className="text-slate-400 text-sm mb-4 line-clamp-3">
@@ -101,7 +117,7 @@ const Projects = () => {
                                 {/* Tags Techno */}
                                 <div className="flex flex-wrap gap-2 mb-6">
                                     {project.tech.map((t, i) => (
-                                        <span key={i} className="text-xs font-mono text-[#64ffda]">
+                                        <span key={i} className="text-xs font-mono text-green">
                               {t}
                           </span>
                                     ))}
@@ -109,12 +125,14 @@ const Projects = () => {
 
                                 {/* Liens */}
                                 <div className="flex gap-4">
-                                    <a href={project.githubLink} className="text-slate-300 hover:text-[#64ffda] transition-colors" title="Code Source">
+                                    <a href={project.githubLink} className="text-slate-300 hover:text-green transition-colors" title="Code Source">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                                     </a>
-                                    <a href={project.demoLink} className="text-slate-300 hover:text-[#64ffda] transition-colors" title="Voir le site">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    </a>
+                                    {project.demoLink !== "#" && (
+                                        <a href={project.demoLink} className="text-slate-300 hover:text-green transition-colors" title="Voir le site">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        </a>
+                                    )}
                                  </div>
                             </div>
                         </motion.div>
