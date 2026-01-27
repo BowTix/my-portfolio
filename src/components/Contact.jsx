@@ -97,7 +97,6 @@ const Contact = () => {
                     className="text-slate-400 text-lg max-w-xl mx-auto mb-12 leading-relaxed"
                 >
                     Je suis actuellement à la recherche de nouvelles opportunités.
-                    Mon inbox est toujours ouverte !
                 </motion.p>
 
                 <motion.a
@@ -106,7 +105,7 @@ const Contact = () => {
                     whileTap={{ scale: 0.95 }}
                     className="inline-block px-10 py-5 border-2 border-green text-green rounded font-mono text-lg hover:bg-green/10 transition-colors duration-300"
                 >
-                    Me Contacter
+                    Contactez moi !
                 </motion.a>
             </div>
         </section>
