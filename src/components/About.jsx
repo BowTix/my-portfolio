@@ -78,7 +78,7 @@ const About = () => {
     };
 
     const skills = [
-        "JavaScript / TypeScript", "ReactJS / NodeJS", "Php / Symphony",
+        "JavaScript / TypeScript", "React / Node.js / Vue.js", "Php / Symfony",
         "Python", "C / C++ / C#", "MySQL / MongoDB",
         "Docker", "Git / GitHub"
     ];
